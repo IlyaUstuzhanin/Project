@@ -40,6 +40,8 @@ public:
 		vector n(i, j, k);
 		return n;
 	}
+
+	double scalar_product(vector a, vector b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
 };
 
 class Cell {
@@ -81,17 +83,3 @@ public:
 		return norma(l) / 2;
 	}
 };
-
-
-int main() {
-	//нормаль, точки коллокации - центр €чейки, €чейка
-
-	Point A(0, 0, 0), B(1, 0, 0), C(1, 1, 0), D(0, 1, 0);
-
-	Cell one(A, B, C, D);
-
-	cout << one.collocation.x << " " << one.collocation.y << " " << one.collocation.z << endl;
-	cout << one.n.x << " " << one.n.y << " " << one.n.z << endl;
-
-	return 0;
-}
