@@ -5,4 +5,3 @@ set(CMAKE_CXX_FLAGS "-O3 -Ofast -flto -march=native")
 find_package(LAPACK REQUIRED)
 
 add_executable(main Classes.cpp test_blas_lapack.cpp)
-target_link_libraries(main PUBLIC LAPACK::LAPACK)
