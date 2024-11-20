@@ -37,8 +37,7 @@ public:
 		double i = a.y * b.z - a.z * b.y;
 		double j = a.x * b.z - a.z * b.x;
 		double k = a.x * b.y - a.y * b.x;
-		double norma = sqrt(i * i + j * j + k * k);
-		vector n(i/norma, j/norma, k/norma);
+		vector n(i, j, k);
 		return n;
 	}
 };
@@ -62,14 +61,24 @@ public:
 		collocation.y = 1.0 / 4.0 * (A.y + B.y + C.y + D.y);
 		collocation.z = 1.0 / 4.0 * (A.z + B.z + C.z + D.z);
 	};
+
+	double norma(vector l) { return sqrt(l.x * l.x + l.y * l.y + l.z * l.z); }
+
 	void normal() {
 		vector l(A, C);
 		vector r(B, D);
 		n = n.vector_product(l, r);
+		double norm = norma(n);
+		n.x = n.x / norm;
+		n.y = n.y / norm;
+		n.z = n.z / norm;
 	};
 
 	double square() {
-
+		vector l(A, C);
+		vector r(B, D);
+		l = l.vector_product(l, r);
+		return norma(l) / 2;
 	}
 };
 
@@ -81,8 +90,8 @@ int main() {
 
 	Cell one(A, B, C, D);
 
-	cout<<one.collocation.x << " " << one.collocation.y<<" " << one.collocation.z << endl;
-	cout << one.n.x<<" " << one.n.y <<" " << one.n.z << endl;
-	
+	cout << one.collocation.x << " " << one.collocation.y << " " << one.collocation.z << endl;
+	cout << one.n.x << " " << one.n.y << " " << one.n.z << endl;
+
 	return 0;
 }
