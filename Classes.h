@@ -24,6 +24,8 @@ public:
 	vector vector_product(vector a, vector b);
 
 	double scalar_product(vector a, vector b);
+
+	double norma();
 };
 
 class Cell {
@@ -37,8 +39,6 @@ public:
 	Cell(Point a, Point b, Point c, Point d);
 
 	void collocPoint();
-
-	double norma(vector l);
 
 	void normal();
 

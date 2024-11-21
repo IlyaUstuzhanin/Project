@@ -50,13 +50,13 @@ void Cell:: collocPoint() {
 	collocation.z = 1.0 / 4.0 * (A.z + B.z + C.z + D.z);
 };
 
-double Cell::norma(vector l) { return std::sqrt(l.x * l.x + l.y * l.y + l.z * l.z); };
+double vector::norma() { return std::sqrt(x * x + y * y + z * z); };
 
 void Cell::normal() {
 	vector l(A, C);
 	vector r(B, D);
 	n = n.vector_product(l, r);
-	double norm = norma(n);
+	double norm = n.norma();
 	n.x = n.x / norm;
 	n.y = n.y / norm;
 	n.z = n.z / norm;
@@ -66,5 +66,5 @@ double Cell:: square() {
 	vector l(A, C);
 	vector r(B, D);
 	l = l.vector_product(l, r);
-	return norma(l) / 2;
+	return l.norma() / 2;
 };
