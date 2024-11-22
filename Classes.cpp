@@ -1,6 +1,7 @@
 #include <iostream>
 #include<stdio.h>
 #include "Classes.h"
+#include <cmath>
 
 Point::Point() {};
 Point::Point(double i, double j, double k) {
@@ -23,15 +24,15 @@ vector::vector(Point a, Point b) {
 	z = b.z - a.z;
 };
 
-vector vector:: vector_product(vector a, vector b) {
-	double i = a.y * b.z - a.z * b.y;
-	double j = a.x * b.z - a.z * b.x;
-	double k = a.x * b.y - a.y * b.x;
+vector vector:: vector_product(vector b) {
+	double i = y * b.z - z * b.y;
+	double j = x * b.z - z * b.x;
+	double k = x * b.y - y * b.x;
 	vector n(i, j, k);
 	return n;
 };
 
-double vector::scalar_product(vector a, vector b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
+double vector::scalar_product( vector b) { return x * b.x + y * b.y + z * b.z; }
 
 
 Cell::Cell() {};
@@ -55,7 +56,7 @@ double vector::norma() { return std::sqrt(x * x + y * y + z * z); };
 void Cell::normal() {
 	vector l(A, C);
 	vector r(B, D);
-	n = n.vector_product(l, r);
+	n = l.vector_product(r);
 	double norm = n.norma();
 	n.x = n.x / norm;
 	n.y = n.y / norm;
@@ -65,6 +66,6 @@ void Cell::normal() {
 double Cell:: square() {
 	vector l(A, C);
 	vector r(B, D);
-	l = l.vector_product(l, r);
-	return l.norma() / 2;
+	l = l.vector_product(r);
+	return l.norma() / 2.0;
 };

@@ -21,9 +21,9 @@ public:
 
 	vector(Point a, Point b);
 
-	vector vector_product(vector a, vector b);
+	vector vector_product(vector b);
 
-	double scalar_product(vector a, vector b);
+	double scalar_product(vector b);
 
 	double norma();
 };
